@@ -13,12 +13,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 def recibe_parametros():
+    '''recibe argumentos en forma de true/false'''
     parser = argparse.ArgumentParser(description="Informacion valor stock bancos españoles")
     parser.add_argument('-san','--santander',help='Ver evolucion de stock de santander',action='store_true')           
     parser.add_argument('-bank','--bankinter',help='Ver evolucion de stock de bankinter',action='store_true')
     parser.add_argument('-sab','--sabadell',help='Ver evolucion de stock de santander',action='store_true')
-    parser.add_argument('-bbva',help='Ver evolucion de stock de santander',action='store_true')
-    parser.add_argument('-caixa',help='Ver evolucion de stock de caixa',action='store_true')
+    parser.add_argument('--bbva',help='Ver evolucion de stock de santander',action='store_true')
+    parser.add_argument('--caixa',help='Ver evolucion de stock de caixa',action='store_true')
     parser.add_argument('--stock',help='Ver valor Stock en directo de todos los bancos',action='store_true')
     parser.add_argument('--economia',help='Consultar parametros economia española',action='store_true')
     parser.add_argument('--elecciones',help='Consultar resultados electorales',action='store_true')
@@ -29,9 +30,10 @@ def main():
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=11)
-    pdf.cell(200, 10, txt=str(datetime.datetime.now()), ln=1, align="R")
+    pdf.cell(200, 10, txt=str(datetime.datetime.now().date()), ln=1, align="R")
 
     def write_pdf(text,aligned):
+        '''escribe el string text en el pdf''' 
         pdf.cell(200,10,txt=text,ln=1,align=aligned)
     
     config = recibe_parametros()
@@ -66,10 +68,9 @@ def main():
         gob = Gov.elecciones()
         years = ["1","6","9"]
         for i in range(3):
-            write_pdf("In 201{} {} obtained {} votes ({}%)".format(years[i],gob[i][0],gob[i][1],gob[i][2]),"L")
+            write_pdf("\nIn 201{} {} obtained {} votes ({}%)".format(years[i],gob[i][0],gob[i][1],gob[i][2]),"L")
             pdf.image(gob[3][i],x=60)
    
-
     pdf.output("../output/Pipeline_Proyect.pdf")
 
 

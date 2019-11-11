@@ -2,10 +2,10 @@
 import function as F
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 
 
 def bank_graphs(df,bol):
+    '''crea graficas del conjunto de bancos seleccionaos'''
     x = 0
     r = [[0]*5]*5    
     bwidth = 0.15
@@ -19,7 +19,7 @@ def bank_graphs(df,bol):
         x+=1
     plt.title("Stock Market"),plt.xlabel("Year"),plt.ylabel("Closed Stock")
     plt.legend(),plt.grid(axis="y")
-    save_graph("banks_bar",bol,a1+bwidth,1)
+    F.save_graph("banks_bar",bol,a1+bwidth)
     plt.clf()
     x = 0
     for i in range(0,25,5):
@@ -32,6 +32,7 @@ def bank_graphs(df,bol):
 
 
 def ind_bank(bank,name,color_b,bol):
+    '''crea graficas de la evolucion del stock de los bancos por individual'''
     plt.clf()
     values = list(bank["Close"])
     a1 = np.arange(len(values))

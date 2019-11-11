@@ -1,6 +1,4 @@
 #!/usr/local/bin/python3
- 
-import sys
 import pandas as pd
 import function as F
 import matplotlib as plt
@@ -11,6 +9,7 @@ from bs4 import BeautifulSoup
 pd.set_option('mode.chained_assignment', None)
 
 def bank_data():
+    '''limpia y organiza informacion del stock market de los bancos desde 2015'''
     banks = []
     banks.append(F.csv_read("santander"))
     banks.append(F.csv_read("bankinter"))
@@ -27,6 +26,7 @@ def bank_data():
 
 
 def stock_directo():
+    '''consulta en directo el valor de stock de cada banco'''
     links=["https://www.marketwatch.com/investing/stock/san?countrycode=es",
       "https://www.marketwatch.com/investing/stock/bkt?countrycode=es",
       "https://www.marketwatch.com/investing/stock/sab?countrycode=es",
@@ -40,7 +40,7 @@ def stock_directo():
         html = res.text
         soup = BeautifulSoup(html, 'html.parser')
         actual.append(soup("span", class_="value")[0].text)
-        prev = (soup("span", class_="value")[0].text).encode('cp1252')
+        prev = (soup("span", class_="value")[0].text)
         previous.append(prev)
         time = soup("span",class_="timestamp__time")[0].text
     return [names, actual, previous, time]

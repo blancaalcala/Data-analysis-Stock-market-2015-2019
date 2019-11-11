@@ -2,6 +2,7 @@ import function as F
 import pandas as pd
 
 def pib_ipc():
+    '''procesa y limpia informacion del PIB en España'''
     pib = F.csv_read("pib") 
     pib = pib.drop(pib.index[:76])
     pib = pib.drop(pib.index[19:])
@@ -19,7 +20,7 @@ def pib_ipc():
         pib["year"][i] = int(pib["year"][i][0:4])
     pib = pib.groupby("year").sum()/4
 
-
+    '''procesa y limpia informacion del IPC en España'''
     ipc = F.csv_read("ipc") 
     ipc = ipc.drop(ipc.index[50:])
     ipc = ipc.reset_index()

@@ -1,8 +1,9 @@
-import unicodedata
+#!/usr/local/bin/python3
 import function as F
 
 
 def elecciones():
+    '''web scraping para obtener informacion de los resultados electorales y las legislaciones'''
     url = "https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_"
     urls = ["2011","2016","abril_de_2019"]
     selector = "#mw-content-text > div > table.infobox_v2.vevent > tbody > tr:nth-child" 
