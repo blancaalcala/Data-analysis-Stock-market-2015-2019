@@ -92,7 +92,7 @@ def main():
 
     pdf.output("../output/Pipeline_Proyect.pdf")
 
-    #S.send_mail()
+    S.send_mail()
     
 
 
