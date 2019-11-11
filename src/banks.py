@@ -4,6 +4,7 @@ import function as F
 import matplotlib as plt
 import requests
 from bs4 import BeautifulSoup
+import unicodedata
 
 
 pd.set_option('mode.chained_assignment', None)
@@ -26,7 +27,7 @@ def bank_data():
 
 
 def stock_directo():
-    '''consulta en directo el valor de stock de cada banco'''
+    '''consulta en directo el valor de stock de cada'''
     links=["https://www.marketwatch.com/investing/stock/san?countrycode=es",
       "https://www.marketwatch.com/investing/stock/bkt?countrycode=es",
       "https://www.marketwatch.com/investing/stock/sab?countrycode=es",
@@ -40,12 +41,12 @@ def stock_directo():
         html = res.text
         soup = BeautifulSoup(html, 'html.parser')
         actual.append(soup("span", class_="value")[0].text)
-        prev = (soup("span", class_="value")[0].text)
-        previous.append(prev)
+        prev = (soup.select)("body > div.container.wrapper.clearfix.j-quoteContainer.stock > div.region.region--fixed > div.template.template--aside > div > div > div.intraday__close > table > tbody > tr > td")[0].text
+        previous.append(prev[1:])
         time = soup("span",class_="timestamp__time")[0].text
     return [names, actual, previous, time]
 
-        
+
 
 
 
