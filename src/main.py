@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import send as S
 
-
 def recibe_parametros():
     # obtener parametros true/false para cada tipo de argumento
     parser = argparse.ArgumentParser(description="Informacion valor stock bancos españoles")
@@ -48,9 +47,9 @@ def main():
             write_pdf("In 201{} {} obtained {} votes ({}%)".format(years[i],gob[i][0],gob[i][1],gob[i][2]),"L")
             im_pdf(gob[3][i],80,80)
     
-    pdf.add_page()
-
     if config.economia:
+        if config.elecciones:
+            pdf.add_page()
         df = E.pib_ipc()  
         df.plot()
         plt.savefig('../output/economia.png')
@@ -94,7 +93,5 @@ def main():
 
     S.send_mail()
     
-
-
 if __name__=="__main__":
     main()

@@ -27,7 +27,6 @@ def pib_ipc():
 
     ipc = F.rename_df(ipc,["index",'Año;"Periodo";"IPC"'],["year","IPC %"])
     var = []
-    var = []
     for i in range(len(ipc["year"])):
         var.append(int(ipc["year"][i][-1]))
         ipc["year"][i] = int(ipc["year"][i][0:4])

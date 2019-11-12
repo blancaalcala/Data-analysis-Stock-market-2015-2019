@@ -8,7 +8,7 @@ import getpass
 
 
 def send_mail():
-    sender_pass = getpass.getpass("Insert your mysql root password: ")
+    sender_pass = getpass.getpass("Insert your email password: ")
     sender_address = 'blancaalcala97@gmail.com'
     receiver_address = 'blancaalcala97@gmail.com'
 
@@ -26,9 +26,9 @@ def send_mail():
     payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
     message.attach(payload)
 
-    session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
-    session.starttls() #enable security
-    session.login(sender_address, sender_pass) #login with mail_id and password
+    session = smtplib.SMTP('smtp.gmail.com', 587) 
+    session.starttls() 
+    session.login(sender_address, sender_pass) 
     text = message.as_string()
     session.sendmail(sender_address, receiver_address, text)
     session.quit()

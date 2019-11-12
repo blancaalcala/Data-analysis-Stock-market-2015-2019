@@ -39,6 +39,7 @@ def elecciones(partido,voto,perc):
     return gobierno
 
 def save_graph(name,bol,sep):
+    '''guarda el eje x de ls graficas dependiendo de la consulta de las elecciones'''
     if not bol:
         plt.xticks(sep,["2015","2016","2017","2018","2019"])
         plt.savefig('../output/'+name+'.png')

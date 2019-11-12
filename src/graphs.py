@@ -30,7 +30,6 @@ def bank_graphs(df,bol):
     plt.legend()
     F.save_graph("banks_line",bol,a1+bwidth)
 
-
 def ind_bank(bank,name,color_b,bol):
     '''crea graficas de la evolucion del stock de los bancos por individual'''
     plt.clf()
