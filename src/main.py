@@ -43,6 +43,7 @@ def main():
     if config.elecciones:
         gob = Gov.elecciones()
         years = ["1","6","9"]
+        write_pdf("RESULTADOS ELECCIONES","C")
         for i in range(3):
             write_pdf("In 201{} {} obtained {} votes ({}%)".format(years[i],gob[i][0],gob[i][1],gob[i][2]),"L")
             im_pdf(gob[3][i],80,80)
@@ -50,6 +51,7 @@ def main():
     if config.economia:
         if config.elecciones:
             pdf.add_page()
+        write_pdf("PIB E IPC 2015-2019","C")
         df = E.pib_ipc()  
         df.plot()
         plt.savefig('../output/economia.png')
@@ -59,6 +61,7 @@ def main():
         output = B.bank_data()
         df = pd.concat([output[0],output[1],output[2],output[3],output[4]])
         G.bank_graphs(df,config.elecciones)
+        write_pdf("VALOR EN BOLSA DE TODOS LOS BANCOS","C")
         im_pdf("../output/banks_bar.png")
         im_pdf("../output/banks_line.png")
 
@@ -66,24 +69,30 @@ def main():
         output = B.bank_data()
         if config.santander:
             G.ind_bank(output[0],"Santander","red",config.elecciones)
+            write_pdf("EVOLUCION EN BOLSA DE SANTANDER","C")
             im_pdf("../output/Santander.png")
         if config.bankinter:
             G.ind_bank(output[1],"Bankinter","orange",config.elecciones)
+            write_pdf("EVOLUCION EN BOLSA DE BANKINTER","C")
             im_pdf("../output/Bankinter.png")
         if config.sabadell:
             G.ind_bank(output[2],"Sabadell","deepskyblue",config.elecciones)
+            write_pdf("EVOLUCION EN BOLSA DE SABADELL","C")
             im_pdf("../output/Sabadell.png")
         if config.bbva:
             G.ind_bank(output[3],"BBVA","navy",config.elecciones)
+            write_pdf("EVOLUCION EN BOLSA DE BBVA","C")
             im_pdf("../output/BBVA.png")
         if config.caixa:
             G.ind_bank(output[4],"CaixaBank","black",config.elecciones)
+            write_pdf("EVOLUCION EN BOLSA DE CAIXA","C")
             im_pdf("../output/CaixaBank.png")
 
     pdf.add_page()
 
     if config.stock:
         live = B.stock_directo()
+        write_pdf("VALOR EN BOLSA","C")
         for x in range(5):
             write_pdf("--> {}: Actual stock closed value: {} Euros".format(live[0][x],live[1][x]),"L")
             write_pdf("--> {}: Previous stock closed value: {} Euros".format(live[0][x],live[2][x]),"L")
